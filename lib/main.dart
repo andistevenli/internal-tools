@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:internal_tools/core/hris/data/di/data_injector.dart';
+import 'package:internal_tools/core/hris/domain/di/domain_injector.dart';
+import 'package:internal_tools/feature/di/feature_injector.dart';
 import 'package:internal_tools/feature/hris/page/hris_page.dart';
 
 void main() {
-  runApp(const MyInternalTools());
+  setupDataInjector();
+  setupDomainInjector();
+  setupFeatureInjector();
+  runApp(
+    const ProviderScope(
+      child: MyInternalTools(),
+    ),
+  );
 }
 
 class MyInternalTools extends StatelessWidget {
@@ -14,9 +25,7 @@ class MyInternalTools extends StatelessWidget {
       title: "HRIS",
       debugShowCheckedModeBanner: false,
       initialRoute: HrisPage.routeName,
-      routes: {
-        HrisPage.routeName: (context) => const HrisPage()
-      },
+      routes: {HrisPage.routeName: (context) => const HrisPage()},
     );
   }
 }

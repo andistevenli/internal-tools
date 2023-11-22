@@ -38,6 +38,10 @@ dependencies:
   webview_flutter: ^4.4.2
   geolocator: ^10.1.0
   web_socket_channel: ^2.4.0
+  get_it: ^7.6.0
+  geocoding: ^2.1.1
+  flutter_riverpod: ^2.3.7
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:
