@@ -6,6 +6,8 @@ import 'package:internal_tools/utils/cofi_location.dart';
 class LocationDataSource {
   Future<LocationDto> getCurrentLocation() async {
     try {
+      await Geolocator.checkPermission();
+      await Geolocator.requestPermission();
       // get longitude and latitude of location
       final Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
@@ -25,7 +27,9 @@ class LocationDataSource {
             : "";
         address +=
             placemark.postalCode != null ? "${placemark.postalCode}, " : "";
-        address += placemark.country != null ? "${placemark.country}." : "Tidak Diketahui";
+        address += placemark.country != null
+            ? "${placemark.country}."
+            : "Tidak Diketahui";
         return LocationDto(
           userLongitude: position.longitude,
           userLatitude: position.latitude,
